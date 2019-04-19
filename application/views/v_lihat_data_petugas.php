@@ -82,7 +82,7 @@
     <?php endif;?>
   
   
-<? $total=0;
+<?php $total=0;
  foreach($user as $data){ 
     
     $total+=1;
