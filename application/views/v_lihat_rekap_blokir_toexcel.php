@@ -16,9 +16,7 @@
 
        
           <?php endif;?>
-             <?header("Content-type:application/vnd-ms-excel");
-      header("Content-Disposition:attachment;filename=data_rekap_sipasbong.xlsx");?>
-       
+             <a class="pull-right btn btn-primary btn-xs" href="<?php echo base_url().'Admin/createXLS'?>"><i class="fa fa-file-excel-o"></i> Download (.xlsx)</a><br>
            
        <table border="10px">
     <th style="text-align: center;"> NO REKAP </th>
@@ -53,34 +51,34 @@ if (count($ListBerita) > 0) {
     
     
     echo "<tr>";
-      echo "<td>". $data->ID_REKAP ."</td>";
-      echo "<td>". $data->ID_PELANGGAN ."</td>"; 
-      echo "<td>". $data->NAMA ."</td>";
-      echo "<td>". $data->ALAMAT."</td>";
-      echo "<td>". $data->TARIF ."</td>";
-      echo "<td>". $data->DAYA ."</td>";
-      echo "<td>". $data->KODUK ."</td>";
-      echo "<td>". $data->GARDU."</td>";
-      echo "<td>". $data->TIANG ."</td>";?>
-      <td><a href="<?=base_url().'/assets/uploads/'.$data->FOTO_SEBELUM;?>" target="_blank"><img src="<?=base_url().'/assets/uploads/'.$data->FOTO_SEBELUM;?>" width="100"></a></td>
+      echo "<td>". $data['ID_REKAP'] ."</td>";
+      echo "<td>". $data['ID_PELANGGAN'] ."</td>"; 
+      echo "<td>". $data['NAMA']."</td>";
+      echo "<td>". $data['ALAMAT']."</td>";
+      echo "<td>". $data['TARIF'] ."</td>";
+      echo "<td>". $data['DAYA'] ."</td>";
+      echo "<td>". $data['KODUK'] ."</td>";
+      echo "<td>". $data['GARDU']."</td>";
+      echo "<td>". $data['TIANG'] ."</td>";?>
+      <td><a href="<?=base_url().'/assets/uploads/'.$data['FOTO_SEBELUM'];?>" target="_blank"><img src="<?=base_url().'/assets/uploads/'.$data['FOTO_SEBELUM'];?>" width="100"></a></td>
       
-      <td> <a href="<?=base_url().'/assets/uploads/'.$data->FOTO_SESUDAH;?>" target="_blank"><img src="<?=base_url().'/assets/uploads/'.$data->FOTO_SESUDAH;?>" width="100"></a></td>
+      <td> <a href="<?=base_url().'/assets/uploads/'.$data['FOTO_SESUDAH'];?>" target="_blank"><img src="<?=base_url().'/assets/uploads/'.$data['FOTO_SESUDAH'];?>" width="100"></a></td>
       
       <!--echo "<td>". $data['FOTO_SESUDAH'] ."</td>";-->
       
       <?php
-      echo "<td>". $data->TANGGAL."</td>";
-      echo "<td>". $data->KORDINAT ."</td>";
-      echo "<td>". $data->KETERANGAN ."</td>";
+      echo "<td>". $data['TANGGAL']."</td>";
+      echo "<td>". $data['KORDINAT'] ."</td>";
+      echo "<td>". $data['KETERANGAN'] ."</td>";
                   
 
       //ketika non admin maka no fasilitas lihat password edit/hapus
       if($this->session->userdata('akses')=='admin'){
-        echo "<td>".anchor('Admin/edit_rekap/'.$data->ID_REKAP,'Edit')."||".anchor('Admin/hapus_rekap/'.$data->ID_REKAP,'Hapus')."</td>";
+        echo "<td>".anchor('Admin/edit_rekap/'.$data['ID_REKAP'],'Edit')."||".anchor('Admin/hapus_rekap/'.$data['ID_REKAP'],'Hapus')."</td>";
         echo "</tr>";  
       }
       if($this->session->userdata('akses')=='petugas'){
-        echo "<td>".anchor('Petugas/edit_rekap/'.$data->ID_REKAP,'Edit')."</td>";
+        echo "<td>".anchor('Petugas/edit_rekap/'.$data['ID_REKAP'],'Edit')."</td>";
         echo "</tr>";  
       }
       

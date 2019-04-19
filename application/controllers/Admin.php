@@ -5,6 +5,7 @@ class Admin extends CI_Controller{
     $this->load->model('Data_model');
     $this->load->model('Admin_model');
 	$this->load->helper('url');	
+
    //validasi jika user belum login
     if($this->session->userdata('masuk') != TRUE){
             redirect('/login');
@@ -21,7 +22,7 @@ class Admin extends CI_Controller{
         $this->load->library('excel');
         
 		// create file name
-        $fileName = 'data-'.time().'.xlsx';  
+        $fileName = ' data-'.time().'.xlsx';  
 		$empInfo = $this->Data_model->employeeList();
         $objPHPExcel = new PHPExcel();
         $objPHPExcel->setActiveSheetIndex(0);
@@ -31,42 +32,57 @@ class Admin extends CI_Controller{
         $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'NAMA PELANGGAN');
         $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'ALAMAT');
         $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'TARIF');
-        $objPHPExcel->getActiveSheet()->SetCellValue('A1', 'DAYA');
-        $objPHPExcel->getActiveSheet()->SetCellValue('B1', 'KODUK');
-        $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'GARDU');
-        $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'TIANG');
-        $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'FOTO_SEBELUM');
-        $objPHPExcel->getActiveSheet()->SetCellValue('A1', 'FOTO_SESUDAH');
-        $objPHPExcel->getActiveSheet()->SetCellValue('B1', 'TANGGAL');
-        $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'KORDINAT');
-        $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'KETERANGAN');
+        $objPHPExcel->getActiveSheet()->SetCellValue('F1', 'DAYA');
+        $objPHPExcel->getActiveSheet()->SetCellValue('G1', 'KODUK');
+        $objPHPExcel->getActiveSheet()->SetCellValue('H1', 'GARDU');
+        $objPHPExcel->getActiveSheet()->SetCellValue('I1', 'TIANG');
+        $objPHPExcel->getActiveSheet()->SetCellValue('J1', 'FOTO_SEBELUM');
+        $objPHPExcel->getActiveSheet()->SetCellValue('K1', 'FOTO_SESUDAH');
+        $objPHPExcel->getActiveSheet()->SetCellValue('L1', 'TANGGAL');
+        $objPHPExcel->getActiveSheet()->SetCellValue('M1', 'KORDINAT');
+        $objPHPExcel->getActiveSheet()->SetCellValue('N1', 'KETERANGAN');
         // set Row
         $rowCount = 2;
         foreach ($empInfo as $element) {
-            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $element['NO']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $element['ID_REKAP']);
             $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $element['ID_PELANGGAN']);
             $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $element['NAMA']);
             $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $element['ALAMAT']);
             $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, $element['TARIF']);
 
-            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $element['DAYA']);
-            $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $element['KODUK']);
-            $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $element['GARDU']);
-            $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $element['TIANG']);
-            $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, $element['FOTO_SEBELUM']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, $element['DAYA']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, $element['KODUK']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, $element['GARDU']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, $element['TIANG']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, $element['FOTO_SEBELUM']);
 
-            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $element['FOTO_SESUDAH']);
-            $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $element['TANGGAL']);
-            $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $element['KORDINAT']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, $element['FOTO_SESUDAH']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('L' . $rowCount, $element['TANGGAL']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('M' . $rowCount, $element['KORDINAT']);
 
-            $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $element['KETERANGAN']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('N' . $rowCount, $element['KETERANGAN']);
             $rowCount++;
         }
-        $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
-        $objWriter->save(ROOT_UPLOAD_IMPORT_PATH.$fileName);
-		// download file
-        header("Content-Type: application/vnd.ms-excel");
-        redirect(HTTP_UPLOAD_IMPORT_PATH.$fileName);        
+        //set title pada sheet (me rename nama sheet)
+            $objPHPExcel->getActiveSheet()->setTitle('Excel Pertama');
+ 
+            //mulai menyimpan excel format xlsx, kalau ingin xls ganti Excel2007 menjadi Excel5          
+            $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+ 
+            //sesuaikan headernya 
+            header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+            header("Cache-Control: no-store, no-cache, must-revalidate");
+            header("Cache-Control: post-check=0, pre-check=0", false);
+            header("Pragma: no-cache");
+            header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            //ubah nama file saat diunduh
+            header('Content-Disposition: attachment;filename="hasilExcel.xlsx"');
+            //unduh file
+            $objWriter->save("php://output");
+ 
+            //Mulai dari create object PHPExcel itu ada dokumentasi lengkapnya di PHPExcel, 
+            // Folder Documentation dan Example
+            // untuk belajar lebih jauh mengenai PHPExcel silakan buka disitu     
     }
  
   function index(){
