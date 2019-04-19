@@ -86,7 +86,7 @@
       ?>
            
     <div class="container" style="background-color: rgba(50,50,50,0); ">
-        <div class="col-md-4 col-md-offset-4" style="background-color: rgba(50,50,50,0.5);  width: : 680px;">
+        <div class="col-md-4 col-md-offset-4" style="background-color: rgba(50,50,50,0.5); width: auto; ">
 
           <?php if($this->session->userdata('akses')=='admin')://jika dari admin maka ke kontroller admin?>
           <form style="font-size: 20px; padding-top: 50px; padding-left: 10px;padding-bottom: 50px;padding-right: 10px;" class="form-signin" action="<?php echo base_url().'Admin/input_aksi_rekap/' ?>" method="post" enctype="multipart/form-data">
