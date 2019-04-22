@@ -38,7 +38,9 @@ class Login extends CI_Controller{
 				$this->session->set_userdata('ses_jabatan',$data['jabatan']);
 				$this->session->set_userdata('ses_nama_lengkap',$data['nama_lengkap']);
 				$this->session->set_userdata('ses_level',$data['level']);
-				echo '<script language="javascript">alert("Login berhasil"); document.location="'.base_url().'Admin/index";</script>' ;	
+				//echo '<script language="javascript">alert("Login berhasil"); document.location="'.base_url().'Admin/index";</script>' ;	
+
+					header('Location: ' . base_url() . 'Admin/index'); 
 			}
 			else//petugas
 			{
@@ -51,7 +53,8 @@ class Login extends CI_Controller{
 					$this->session->set_userdata('ses_id',$data['id']);
 					$this->session->set_userdata('ses_nama_lengkap',$data['nama_lengkap']);
 					$this->session->set_userdata('ses_level',$data['level']);
-					echo '<script language="javascript">alert("Login berhasil"); document.location="'.base_url().'Petugas/index";</script>' ;		
+					//echo '<script language="javascript">alert("Login berhasil"); document.location="'.base_url().'Petugas/index";</script>' ;
+					header('Location: ' . base_url() . 'Petugas/index');
 				}
 			}
 }
@@ -65,7 +68,8 @@ class Login extends CI_Controller{
 
 	function logout(){
 		$this->session->sess_destroy();
-				echo '<script language="javascript">alert("Logout"); document.location="'.base_url().'login";</script>';			
+			//	echo '<script language="javascript">alert("Logout"); document.location="'.base_url().'login";</script>';
+			header('Location: ' . base_url() . 'login');			
 		}	
 
 

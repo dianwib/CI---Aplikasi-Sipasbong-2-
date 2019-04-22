@@ -35,8 +35,6 @@
     <th style="text-align: center;"> KETERANGAN </th>
       
     
-    
-    
     <!--ketika non admin maka no fasilitas lihat password edit/hapus-->
     <?php if($this->session->userdata('masuk')==TRUE):?>
     <th style="text-align: center;"> ACTION </th>
