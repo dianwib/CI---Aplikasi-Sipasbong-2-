@@ -141,47 +141,50 @@
             <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="text" id="id" name="TIANG" class="form-control" value="<?php echo $data->TIANG ?>" required ></td></tr>
 
             <tr>
-            <td><b>KORDINAT </b></td>
+            <td><b>KOORDINAT </b></td>
             <td> 
-           
-              <button onclick="getLocation()">Cek Kordinat</button>
 
 
 
-<p id="demo"></p>
+<?php
+ function get_client_ip()
+ {
+      $ipaddress = '';
+      if (getenv('HTTP_CLIENT_IP'))
+          $ipaddress = getenv('HTTP_CLIENT_IP');
+      else if(getenv('HTTP_X_FORWARDED_FOR'))
+          $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+      else if(getenv('HTTP_X_FORWARDED'))
+          $ipaddress = getenv('HTTP_X_FORWARDED');
+      else if(getenv('HTTP_FORWARDED_FOR'))
+          $ipaddress = getenv('HTTP_FORWARDED_FOR');
+      else if(getenv('HTTP_FORWARDED'))
+          $ipaddress = getenv('HTTP_FORWARDED');
+      else if(getenv('REMOTE_ADDR'))
+          $ipaddress = getenv('REMOTE_ADDR');
+      else
+          $ipaddress = 'UNKNOWN';
 
-
-            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="text" id="id" name="KORDINAT" class="form-control" value="0" required >
-           <script>
-var x = document.getElementById("demo");
-
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
-
-function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude + 
-  "<br>Longitude: " + position.coords.longitude;
-  document.pr
-}
-</script>
-           
+      return $ipaddress;
+ };
+$new_arr[]= unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_SERVER['REMOTE_ADDR']));
+#echo "Latitude:".$new_arr[0]['geoplugin_latitude']." and Longitude:".$new_arr[0]['geoplugin_longitude'];
+$lokasi=$new_arr[0]['geoplugin_latitude']." || ".$new_arr[0]['geoplugin_longitude'];
+?>
+                      
+            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="text" id="id" name="KORDINAT" class="form-control" value="<?php echo $lokasi ?>" required >
            </td></tr>
 
             <tr>
             <td><b>FOTO SEBELUM </b></td>
             <td> 
-            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="file" id="id" name="FOTO_SEBELUM" class="form-control" required="" ></td></tr>
+            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="file" id="id" name="FOTO_SEBELUM" class="form-control" required="" accept="image/*" ></td></tr>
 
 
             <tr>
             <td><b>FOTO SESUDAH </b></td>
             <td> 
-            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="file" id="id" name="FOTO_SESUDAH" class="form-control" required="" ></td></tr>
+            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="file" id="id" name="FOTO_SESUDAH" class="form-control" required="" accept="image/*" ></td></tr>
 
              <tr>
             <td><b>TANGGAL </b></td>
@@ -219,7 +222,7 @@ value="PASANG KEMBALI">PASANG KEMBALI</td></tr>
 
           </table>
             <br>
-        <input style="font-size: 25px; background-color:rgba(50,50,255,0.9); color: white " type="submit" class="btn btn-primary" value=" &nbsp Ubah &nbsp">
+        <input style="font-size: 25px; background-color:rgba(50,50,255,0.9); color: white " type="submit" class="btn btn-primary" value=" &nbsp Submit &nbsp">
           </form>
         </div>
         </div> <!-- /container -->

@@ -114,7 +114,7 @@ value="petugas">PETUGAS</td></tr>
             
           </table>
             <br>
-        <input style="font-size: 25px; background-color:rgba(50,50,255,0.9); color: white " type="submit" class="btn btn-primary" value=" &nbsp Ubah &nbsp">
+        <input style="font-size: 25px; background-color:rgba(50,50,255,0.9); color: white " type="submit" class="btn btn-primary" value=" &nbsp Submit &nbsp">
           </form>
         </div>
         </div> <!-- /container -->

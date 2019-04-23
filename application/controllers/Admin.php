@@ -17,6 +17,59 @@ class Admin extends CI_Controller{
 
 
   }
+
+function createPDF(){
+if($this->session->userdata('akses')=='admin' )
+    {
+
+      if (isset($_POST['q'])) {
+      $data['ringkasan'] = $this->input->post('cari');
+      // se session userdata untuk pencarian, untuk paging pencarian
+      $this->session->set_userdata('sess_ringkasan', $data['ringkasan']);
+      }
+      else {
+
+      $data['ringkasan'] = $this->session->userdata('sess_ringkasan');
+      }
+  
+    $this->load->model('Data_model');
+
+    $this->db->like('ID_PELANGGAN', $data['ringkasan']);
+        $this->db->from('rekap_blokir');
+
+    // pagination limit
+    $pagination['base_url'] = base_url().'Petugas/lihat_rekap_blokir/page/';
+    $pagination['total_rows'] = $this->db->count_all_results();
+    $pagination['full_tag_open'] = "<p><div class=\"pagination\" style='letter-spacing:2px;'>";
+    $pagination['full_tag_close'] = "</div></p>";
+    $pagination['cur_tag_open'] = "<span class=\"current\">";
+    $pagination['cur_tag_close'] = "</span>";
+    $pagination['num_tag_open'] = "<span class=\"disabled\">";
+    $pagination['num_tag_close'] = "</span>";
+    $pagination['per_page'] = "100";
+    $pagination['uri_segment'] = 4;
+    $pagination['num_links'] = 5;
+
+    $this->pagination->initialize($pagination);
+
+    $data['ListBerita'] = $this->Data_model->ambildata_rekap($pagination['per_page'],$this->uri->segment(4,0),$data['ringkasan']);
+
+    $this->load->vars($data);  
+ $this->load->view('v_lihat_rekap_blokir_topdf');
+
+$html = $this->output->get_output();
+$this->load->library('pdf');
+$this->dompdf->loadHtml($html);
+$this->dompdf->setPaper('A4', 'landscape');
+$this->dompdf->render();
+$this->dompdf->stream("hasilRekap.pdf", array("Attachment"=>0));
+  }
+ 
+
+     }
+
+
+
   public function createXLS() {
 		// load excel library
         $this->load->library('excel');
@@ -404,38 +457,6 @@ class Admin extends CI_Controller{
   }
 
 
-   function lihat_data_tunggakan(){
-
-    // function ini hanya boleh diakses oleh admin
-    if($this->session->userdata('akses')=='admin')
-    {
-		$where=array('keterangan_tagihan'=>'menunggak','status_blokir'=>'belum');
-		$data['tagihan']=$this->Admin_model->lihat_data($where,'tagihan')->result();
-		$this->load->view('v_lihat_data_calon_blokir.php',$data);
-    }
-    else
-    {
-      echo "Anda tidak berhak mengakses halaman ini";
-    }
- 
-  }
-
-   function lihat_data_proses_blokir(){
-
-    // function ini hanya boleh diakses oleh admin
-    if($this->session->userdata('akses')=='admin')
-    {
-		$where=array('keterangan_tagihan'=>'menunggak','status_blokir'=>'proses');
-		$data['tagihan']=$this->Admin_model->lihat_data($where,'tagihan')->result();
-		$this->load->view('v_lihat_data_proses_blokir.php',$data);
-    }
-    else
-    {
-      echo "Anda tidak berhak mengakses halaman ini";
-    }
- 
-  }
-
 
 function hapus_blokir($id){
 		    if($this->session->userdata('akses')=='admin')
@@ -455,97 +476,6 @@ function hapus_blokir($id){
 	}
 }
 
-
-	function batal_blokir($id){
-    if($this->session->userdata('akses')=='admin')
-    {
-
-		$where=array('id_pelanggan' => $id);
-		
-		//level diganti ke member
-		$data=array(
-			'status_blokir' => 'belum'
-			);
-
-		$this->Admin_model->update_data($where,$data,'tagihan');
-		redirect('Admin/lihat_data_proses_blokir');
-	}
-
-	else
-    {
-      echo "Anda tidak berhak mengakses halaman ini";
-    }
- 
-  }  
-
-
-	function proses_blokir($id){
-    if($this->session->userdata('akses')=='admin')
-    {
-
-		$where=array('id_pelanggan' => $id);
-		
-		//level diganti ke member
-		$data=array(
-			'status_blokir' => 'proses'
-			);
-
-		$this->Admin_model->update_data($where,$data,'tagihan');
-		redirect('Admin/lihat_data_proses_blokir');
-	}
-
-	else
-    {
-      echo "Anda tidak berhak mengakses halaman ini";
-    }
- 
-  }  
-
-
-
-	function aktivasi_member($id){
-    if($this->session->userdata('akses')=='admin' )
-    {
-
-		$where=array('id' => $id);
-		
-		//level diganti ke member
-		$data=array(
-			'level' => 'member'
-			);
-
-		$this->Admin_model->update_data($where,$data,'user');
-		redirect('Admin/lihat_data_member');
-	}
-
-	else
-    {
-      echo "Anda tidak berhak mengakses halaman ini";
-    }
- 
-  }  
-
-	function deaktivasi_member($id){
-    if($this->session->userdata('akses')=='admin')
-    {
-
-		$where=array('id' => $id);
-		
-		//level diganti ke member
-		$data=array(
-			'level' => 'publik'
-			);
-
-		$this->Admin_model->update_data($where,$data,'user');
-		redirect('Admin/lihat_data_non_member');
-	}
-
-	else
-    {
-      echo "Anda tidak berhak mengakses halaman ini";
-    }
- 
-  }
 
   
   function lihat_data_rekap(){
@@ -586,9 +516,36 @@ function hapus_blokir($id){
 
     $this->load->vars($data);  
     $this->load->view('v_lihat_rekap_blokir');
+
   }
   
 }
+
+function cetak_rekap($id){
+    if($this->session->userdata('akses')=='admin')
+    {
+ 
+    $where=array('ID_REKAP'=>$id);
+    $table='rekap_blokir';
+    $data['rekap']=$this->Admin_model->edit_data($where,$table)->result();
+    $this->load->view('v_lihat_download_perrekap_topdf',$data);
+    
+$html = $this->output->get_output();
+$this->load->library('pdf');
+$this->dompdf->loadHtml($html);
+$this->dompdf->setPaper('A4', 'landscape');
+$this->dompdf->render();
+$this->dompdf->stream("hasilRekap.pdf", array("Attachment"=>0));
+
+
+  }
+  else
+    {
+      echo "Anda tidak berhak mengakses halaman ini";
+    }
+  }
+
+
 
 function input_aksi_rekap(){
     if($this->session->userdata('akses')=='admin')

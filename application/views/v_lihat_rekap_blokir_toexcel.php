@@ -16,7 +16,9 @@
 
        
           <?php endif;?>
-             <a class="pull-right btn btn-primary btn-xs" href="<?php echo base_url().'Admin/createXLS'?>"><i class="fa fa-file-excel-o"></i> Download (.xlsx)</a><br>
+             <a class="pull-right btn btn-primary btn-xs" href="<?php echo base_url().'Admin/createXLS'?>"><i class="fa fa-file-excel-o"></i> Download (.xlsx)</a>
+
+             <a class="pull-right btn btn-primary btn-xs" href="<?php echo base_url().'Admin/createPDF'?>"><i class="fa fa-file-excel-o"></i> Download (.pdf)</a><br>
            
        <table border="10px">
     <th style="text-align: center;"> NO REKAP </th>
@@ -37,12 +39,10 @@
     
     <!--ketika non admin maka no fasilitas lihat password edit/hapus-->
     <?php if($this->session->userdata('masuk')==TRUE):?>
-    <th style="text-align: center;"> ACTION </th>
     <?php endif;?>
   
   
 <?php 
-
 if (count($ListBerita) > 0) {
           foreach($ListBerita as $data)
           {
@@ -70,15 +70,6 @@ if (count($ListBerita) > 0) {
       echo "<td>". $data['KETERANGAN'] ."</td>";
                   
 
-      //ketika non admin maka no fasilitas lihat password edit/hapus
-      if($this->session->userdata('akses')=='admin'){
-        echo "<td>".anchor('Admin/edit_rekap/'.$data['ID_REKAP'],'Edit')."||".anchor('Admin/hapus_rekap/'.$data['ID_REKAP'],'Hapus')."</td>";
-        echo "</tr>";  
-      }
-      if($this->session->userdata('akses')=='petugas'){
-        echo "<td>".anchor('Petugas/edit_rekap/'.$data['ID_REKAP'],'Edit')."</td>";
-        echo "</tr>";  
-      }
       
 }echo "<tr><td colspan='9'><div style='background:000; float:right;'>".$this->pagination->create_links()."</div></td></tr>";
         } else {
