@@ -7,9 +7,16 @@ class Gambar_model extends CI_Model {
     return $this->db->get('rekap_blokir')->result();
   }
  
-  public function insert($data)
+  public function insert_berhasil($data)
   {
-    $this->db->insert('rekap_blokir', $data);
+
+    $this->db->insert('REKAP_BERHASIL', $data);
+  }
+
+  public function insert_gagal($data)
+  {
+    
+    $this->db->insert('REKAP_GAGAL', $data);
   }
 }
 

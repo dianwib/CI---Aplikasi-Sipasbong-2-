@@ -12,9 +12,11 @@
 
       <li class="nav-item"><a href="<?php echo base_url().'Admin/lihat_data_pelanggan'?>">DAFTAR PELANGGAN</a></li>
 
-      <li class="nav-item"><a href="<?php echo base_url().'Admin/lihat_data_rekap'?>">REKAP DAFTAR BLOKIR</a></li>
+      <li class="nav-item"><a href="<?php echo base_url().'Admin/lihat_data_perintah'?>">LIHAT DATA PERINTAH</a></li>
 
-    <li class="nav-item"><a href="<?php echo base_url().'Admin/export_data_excel'?>">DOWNLOAD SIPASBONG (.xlsx)</a></li>
+      <li class="nav-item"><a href="<?php echo base_url().'Admin/lihat_data_rekap'?>">LIHAT REKAP (BERHASIL)</a></li>
+
+      <li class="nav-item"><a href="<?php echo base_url().'Admin/lihat_data_rekap_gagal'?>">LIHAT REKAP (GAGAL)</a></li>
 
 
     <!--TAB SIGOUT-->
@@ -25,10 +27,12 @@
   <?php elseif($this->session->userdata('akses')=='petugas'):?>
   <li class="nav-item"><a href="<?php echo base_url().'Petugas/index'?>">HOME</a></li>
       
-    <li class="nav-item"><a href="<?php echo base_url().'Petugas/lihat_data_pelanggan'?>">DAFTAR PELANGGAN</a></li>
 
+      <li class="nav-item"><a href="<?php echo base_url().'Petugas/lihat_data_rekap'?>">LIHAT REKAP (BERHASIL)</a></li>
 
-      <li class="nav-item"><a href="<?php echo base_url().'Petugas/lihat_data_rekap'?>">LIHAT REKAP</a></li>
+      <li class="nav-item"><a href="<?php echo base_url().'Petugas/lihat_data_rekap_gagal'?>">LIHAT REKAP (GAGAL)</a></li>
+
+    <li class="nav-item"><a href="<?php echo base_url().'Petugas/lihat_data_perintah'?>">LIHAT DATA PERINTAH</a></li>
 
   <li ><a href="<?php echo base_url().'/login/logout'?>">LOG OUT</a></li>
   </ul>

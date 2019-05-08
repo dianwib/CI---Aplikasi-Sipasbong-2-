@@ -2,12 +2,12 @@
 
 class Petugas_model extends CI_Model
 {
+
 	
 	public function lihat_data($where,$table){
 		if ($where == '') {//dari kontrolerr admin method lihat_data event
 		//mengurutkan jam
 		//$this->db->order_by('id','ASC');		
-		$this->db->limit(100);	
 		return $this->db->get($table);
 		}
 		else{

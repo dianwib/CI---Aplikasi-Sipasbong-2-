@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Data Pelanggan</title>
+  <title>LIHAT REKAP (GAGAL)</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -62,70 +62,89 @@
         <div class="col-12">
        
 
-        <h2>DATA PELANGGAN</h2>
-
+        <h2>LIHAT REKAP GAGAL</h2>
            
     <div class="container" style="background-color: rgba(50,50,50,0); ">
         <div class="col-md-4 col-md-offset-4">
         </div>
           <?php if($this->session->userdata('akses')=='admin'):
-        
             //jika dari admin maka ke kontroller admin?>
-
-<form style="padding-left: auto; font-size: 15px; padding-right: auto;" class="form-signin" action="<?php echo base_url().'Admin/lihat_data_pelanggan'?>" method="post">
+<form style="padding-left: auto; font-size: 15px; padding-right: auto;" class="form-signin" action="<?php echo base_url().'Admin/lihat_data_rekap'?>" method="post">
 
 <?php elseif($this->session->userdata('akses')=='petugas'):
             //jika dari admin maka ke kontroller admin?>
-<form style="padding-left: auto; font-size: 15px; padding-right: auto;" class="form-signin" action="<?php echo base_url().'Petugas/lihat_data_pelanggan'?>" method="post">
+<form style="padding-left: auto; font-size: 15px; padding-right: auto;" class="form-signin" action="<?php echo base_url().'Petugas/lihat_data_rekap'?>" method="post">
 
        
           <?php endif;?>
           <input type="search" name="cari" placeholder="Cari ID Pelanggan" style="color: rgba(0,0,0,1);"> <input style=" background-color:rgba(50,50,255,0.9); color: white" type="submit" name="q" value="Search">
            
-       <table border="10px" style="background-color:rgba(0,0,0,0.8);">
+       <table border="10px" style="background-color:rgba(50,50,50,0.7);">
+    <th style="text-align: center;"> NO </th>
+    <th style="text-align: center;"> ID PELANGGAN </th>
+    <th style="text-align: center;"> NAMA PELANGGAN </th>
     
-    <th style="text-align: center; padding: 30px;"> ID PELANGGAN </th>
-    <th style="text-align: center; padding: 30px;"> NAMA PELANGGAN </th>
-    <th style="text-align: center; padding: 30px;"> ALAMAT </th>
-    <th style="text-align: center; padding: 30px;"> TARIF </th>  
-    <th style="text-align: center; padding: 30px;"> DAYA </th>
-    <th style="text-align: center; padding: 30px;"> KODUK </th>
-    <th style="text-align: center; padding: 30px;"> GARDU </th>
-    <th style="text-align: center; padding: 30px;"> TIANG </th>  
+    <th style="text-align: center;"> KATEGORI </th>
+    <th style="text-align: center;"> KETERANGAN GAGAL </th>
+    <th style="text-align: center;"> TANGGAL PERINTAH </th>
+    <th style="text-align: center;"> TANGGAL DIKERJAKAN </th>
+    <th style="text-align: center;"> ALAMAT </th>
+    <th style="text-align: center;"> TARIF </th>  
+    <th style="text-align: center;"> DAYA </th>
+    <th style="text-align: center;"> KODUK </th>
+    <th style="text-align: center;"> GARDU </th>
+    <th style="text-align: center;"> TIANG </th>
+    <th style="text-align: center;"> FOTO </th>
+    <th style="text-align: center;"> KORDINAT </th>
+    <th style="text-align: center;"> PETUGAS </th>
+      
     
     
     
     <!--ketika non admin maka no fasilitas lihat password edit/hapus-->
     <?php if($this->session->userdata('masuk')==TRUE):?>
-    <th style="text-align: center; padding: 30px;"> ACTION </th>
+    <th style="text-align: center;"> ACTION </th>
     <?php endif;?>
   
   
 <?php 
+$temp=0;
 
 if (count($ListBerita) > 0) {
           foreach($ListBerita as $data)
           {
-    
+    $temp+=1;
     
     echo "<tr>";
+      echo "<td>". $temp ."</td>"; 
       echo "<td>". $data['ID'] ."</td>";
-      echo "<td>". $data['NAMA'] ."</td>";
-      echo "<td>". $data['ALAMAT']."</td>";
+      echo "<td>". $data['NAMA']."</td>";
+      echo "<td>". $data['KATEGORI'] ."</td>";
+      echo "<td>". $data['KETERANGAN_GAGAL']."</td>";
+      echo "<td>". $data['TANGGAL'] ."</td>";
+      echo "<td>". $data['TANGGAL_DIKERJAKAN']."</td>";
+      echo "<td>". $data['ALAMAT'] ."</td>";
       echo "<td>". $data['TARIF'] ."</td>";
       echo "<td>". $data['DAYA'] ."</td>";
       echo "<td>". $data['KODUK'] ."</td>";
       echo "<td>". $data['GARDU']."</td>";
-      echo "<td>". $data['TIANG'] ."</td>";
+      echo "<td>". $data['TIANG'] ."</td>";?>
+      <td><a href="<?=base_url().'/assets/uploads/'.$data['FOTO'];?>" target="_blank"><img src="<?=base_url().'/assets/uploads/'.$data['FOTO'];?>" width="100"></a></td>
       
+      <!--echo "<td>". $data['FOTO_SESUDAH'] ."</td>";-->
+      
+      <?php
+      echo "<td>". $data['KORDINAT']."</td>";
+      echo "<td>". $data['nama_lengkap'] ."</td>";
+                  
 
       //ketika non admin maka no fasilitas lihat password edit/hapus
       if($this->session->userdata('akses')=='admin'){
-        echo "<td>".anchor('Admin/tambah_perintah/'.$data['ID'],'Eksekusi')."||".anchor('Admin/edit_pelanggan/'.$data['ID'],'Edit')."||".anchor('Admin/hapus_pelanggan/'.$data['ID'],'Hapus')."</td>";
+        echo "<td>".anchor('Admin/edit_rekap/'.$data['ID_REKAP'],'Edit')."||".anchor('Admin/hapus_rekap/'.$data['ID_REKAP'],'Hapus')."||".anchor('Admin/cetak_rekap/'.$data['ID_REKAP'],'Cetak')."</td>";
         echo "</tr>";  
       }
-      else if($this->session->userdata('akses')=='petugas'){
-        echo "<td>".anchor('Petugas/tambah_rekap_blokir/'.$data['ID'],'Eksekusi')."</td>";
+      if($this->session->userdata('akses')=='petugas'){
+        echo "<td>".anchor('Petugas/edit_rekap/'.$data['ID_REKAP'],'Edit')."</td>";
         echo "</tr>";  
       }
       

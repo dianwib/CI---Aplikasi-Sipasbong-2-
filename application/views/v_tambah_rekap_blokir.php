@@ -80,7 +80,7 @@
         <div class="col-12">
        
 
-        <h2>TAMBAH REKAP SIPASBONG</h2>
+        <h2></h2>
   <?php foreach ($datapln as $data) 
     {
       ?>
@@ -93,12 +93,25 @@
              <?php endif;?>
            
             <?php if($this->session->userdata('akses')=='petugas'):?>
-                        <form class="form-signin" action="<?php echo base_url().'Petugas/input_aksi_rekap/' ?>" method="post" enctype="multipart/form-data">
+<table>
+            <tr>
+              <td>
+                     <u><b style="font-size: 40px;">BERHASIL</b></u>
+              </td>
+              <td>
+                
+ <input style="height: 50px; width: 100px;background-color:rgba(0,0,100,0.2); color: white" type="checkbox" id="trigger" name="berhasil">
+            
+              </td>
+            </tr>
+</table>
+
+
              <?php endif;?>
 
+  <form style="float: left; background-color:rgba(50,255,50,0.1);" id="berhasil" class="form-signin" action="<?php echo base_url().'Petugas/input_aksi_rekap/' ?>" method="post" enctype="multipart/form-data">
 
-            <table>
-            
+        <table>   
             <tr>
             <td><b>ID </b></td>
             <td> 
@@ -114,82 +127,84 @@
             <td><b>ALAMAT </b></td>
             <td> 
             <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="text" id="id" name="ALAMAT" class="form-control" value="<?php echo $data->ALAMAT ?>" required ></td></tr>
-
-            <tr>
-            <td><b>TARIF</b></td>
+            
+           <tr>
+            <td><b>KATEGORI </b></td>
             <td> 
-            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="text" id="id" name="TARIF" class="form-control" value="<?php echo $data->TARIF ?>" required ></td></tr>
+            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="text" id="id" name="KATEGORI" class="form-control" value="<?php echo $data->KATEGORI ?>" required ></td></tr>
 
-            <tr>
-            <td><b>DAYA</b></td>
-            <td> 
-            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="text" id="id" name="DAYA" class="form-control" value="<?php echo $data->DAYA ?>" required ></td></tr>
-
-            <tr>
-            <td><b>KODUK</b></td>
-            <td> 
-            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="text" id="id" name="KODUK" class="form-control" value="<?php echo $data->KODUK ?>" required ></td></tr>
-
-            <tr>
-            <td><b>GARDU </b></td>
-            <td> 
-            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="text" id="id" name="GARDU" class="form-control" value="<?php echo $data->GARDU ?>" required ></td></tr>
-
-            <tr>
-            <td><b>TIANG</b></td>
-            <td> 
-            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="text" id="id" name="TIANG" class="form-control" value="<?php echo $data->TIANG ?>" required ></td></tr>
-
-            <tr>
+            </td></tr>
+               <tr>
             <td><b>KOORDINAT </b></td>
             <td> 
 
 
 
 <?php
- function get_client_ip()
- {
-      $ipaddress = '';
-      if (getenv('HTTP_CLIENT_IP'))
-          $ipaddress = getenv('HTTP_CLIENT_IP');
-      else if(getenv('HTTP_X_FORWARDED_FOR'))
-          $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
-      else if(getenv('HTTP_X_FORWARDED'))
-          $ipaddress = getenv('HTTP_X_FORWARDED');
-      else if(getenv('HTTP_FORWARDED_FOR'))
-          $ipaddress = getenv('HTTP_FORWARDED_FOR');
-      else if(getenv('HTTP_FORWARDED'))
-          $ipaddress = getenv('HTTP_FORWARDED');
-      else if(getenv('REMOTE_ADDR'))
-          $ipaddress = getenv('REMOTE_ADDR');
-      else
-          $ipaddress = 'UNKNOWN';
+//localhost
+if($_SERVER['REMOTE_ADDR']=='::1'){
+  $lokasi= "11 || 00";
+  }
+  else{
 
-      return $ipaddress;
- };
 $new_arr[]= unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_SERVER['REMOTE_ADDR']));
 #echo "Latitude:".$new_arr[0]['geoplugin_latitude']." and Longitude:".$new_arr[0]['geoplugin_longitude'];
 $lokasi=$new_arr[0]['geoplugin_latitude']." || ".$new_arr[0]['geoplugin_longitude'];
+
+  }
 ?>
                       
             <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="text" id="id" name="KORDINAT" class="form-control" value="<?php echo $lokasi ?>" required >
            </td></tr>
-
-            <tr>
-            <td><b>FOTO SEBELUM </b></td>
-            <td> 
-            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="file" id="id" name="FOTO_SEBELUM" class="form-control" required="" accept="image/*" ></td></tr>
-
-
-            <tr>
-            <td><b>FOTO SESUDAH </b></td>
-            <td> 
-            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="file" id="id" name="FOTO_SESUDAH" class="form-control" required="" accept="image/*" ></td></tr>
+  
 
              <tr>
-            <td><b>TANGGAL </b></td>
+            <td><b>TANGGAL DIKERJAKAN</b></td>
             <td> 
-          <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="text" id="id" name="TANGGAL" class="TANGGAL" autocomplete="off" data-date-format="yyyy-mm-dd" required ></td></tr>
+    
+    <span>
+      <select name="tgl"  style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" >
+        <?php 
+          $start_date = 1;
+          $end_date   = 31;
+          for( $j=$start_date; $j<=$end_date; $j++ ) {
+            echo '<option value='.$j.'>'.$j.'</option>';
+          }
+        ?>
+      </select>
+    </span>
+              <span>
+      <select name="bln"  style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" >
+
+        <option value="Januari">Januari</option>
+        <option value="Februari">Februari</option>
+        <option value="Maret">Maret</option>
+        <option value="April">April</option>
+        <option value="Mei">Mei</option>
+        <option value="Juni">Juni</option>
+        <option value="Juli">Juli</option>
+        <option value="Agustus">Agustus</option>
+        <option value="September">September</option>
+        <option value="Oktober">Oktober</option>
+        <option value="November">November</option>
+        <option value="Desember">Desember</option>
+        <select> 
+    </span>
+
+    <span>
+      <select name="thn" style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white">
+        <?php 
+          $year = date('Y');
+          $min = $year - 10;
+          $max = $year;
+          for( $i=$max; $i>=$min; $i-- ) {
+            echo '<option value='.$i.'>'.$i.'</option>';
+          }
+        ?>
+      </select>
+    </span>
+
+     <!--     <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="text" id="id" name="TANGGAL" class="TANGGAL" autocomplete="off" data-date-format="yyyy-mm-dd" required ></td></tr> -->
 
 
 
@@ -197,6 +212,7 @@ $lokasi=$new_arr[0]['geoplugin_latitude']." || ".$new_arr[0]['geoplugin_longitud
 
 <!-- Fungsi datepickier yang digunakan -->
 <!-- Fungsi datepickier yang digunakan -->
+<!--
 <script type="text/javascript">
  $('.TANGGAL').datetimepicker({
         language:  'id',
@@ -209,21 +225,176 @@ $lokasi=$new_arr[0]['geoplugin_latitude']." || ".$new_arr[0]['geoplugin_longitud
   forceParse: 0
     });
   </script> 
+-->
+
+
+            <!--id rekap-->
+             <tr>
+            <td><b> </b></td>
+            <td> 
+            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="hidden" id="id" name="ID_PERINTAH" class="form-control" value="<?php echo $data->ID_PERINTAH ?>" required ></td></tr>
+            <tr>
+            <td><b>FOTO SEBELUM </b></td>
+            <td> 
+            <input  style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="file" id="id" name="FOTO_SEBELUM" class="form-control" required="" accept="image/*" ></td></tr>
 
 
             <tr>
+            <td><b>FOTO SESUDAH </b></td>
+            <td> 
+            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="file" id="id" name="FOTO_SESUDAH" class="form-control" required="" accept="image/*" ></td></tr>
+      
+          </table>
+
+            <br>
+            <input style="font-size: 25px; background-color:rgba(50,255,50,0.9); color: white " type="submit" class="btn btn-primary" value=" &nbsp Berhasil Eksekusi &nbsp">
+          </form>
+  
+
+  
+
+  <form style="float: left; background-color:rgba(255,50,50,0.1);" id="gagal" class="form-signin" action="<?php echo base_url().'Petugas/input_aksi_gagal/' ?>" method="post" enctype="multipart/form-data">
+
+        <table>   
+            <tr>
+            <td><b>ID </b></td>
+            <td> 
+            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="text" id="id" name="ID_PELANGGAN" class="form-control" value="<?php echo $data->ID ?>" required ></td></tr>
+
+
+            <tr>
+            <td><b>NAMA PELANGGAN </b></td>
+            <td> 
+            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="text" id="id" name="NAMA" class="form-control" value="<?php echo $data->NAMA ?>" required ></td></tr>
+
+            <tr>
+            <td><b>ALAMAT </b></td>
+            <td> 
+            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="text" id="id" name="ALAMAT" class="form-control" value="<?php echo $data->ALAMAT ?>" required ></td></tr>
+            
+           <tr>
+            <td><b>KATEGORI </b></td>
+            <td> 
+            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="text" id="id" name="KATEGORI" class="form-control" value="<?php echo $data->KATEGORI ?>" required ></td></tr>
+
+            </td></tr>
+               <tr>
+            <td><b>KOORDINAT </b></td>
+            <td> 
+
+
+
+<?php
+//localhost
+if($_SERVER['REMOTE_ADDR']=='::1'){
+  $lokasi= "11 || 00";
+  }
+  else{
+
+$new_arr[]= unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_SERVER['REMOTE_ADDR']));
+#echo "Latitude:".$new_arr[0]['geoplugin_latitude']." and Longitude:".$new_arr[0]['geoplugin_longitude'];
+$lokasi=$new_arr[0]['geoplugin_latitude']." || ".$new_arr[0]['geoplugin_longitude'];
+
+  }
+?>
+                      
+            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="text" id="id" name="KORDINAT" class="form-control" value="<?php echo $lokasi ?>" required >
+           </td></tr>
+  
+
+             <tr>
+            <td><b>TANGGAL DIKERJAKAN</b></td>
+            <td> 
+    
+    <span>
+      <select name="tgl"  style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" >
+        <?php 
+          $start_date = 1;
+          $end_date   = 31;
+          for( $j=$start_date; $j<=$end_date; $j++ ) {
+            echo '<option value='.$j.'>'.$j.'</option>';
+          }
+        ?>
+      </select>
+    </span>
+              <span>
+      <select name="bln"  style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" >
+
+        <option value="Januari">Januari</option>
+        <option value="Februari">Februari</option>
+        <option value="Maret">Maret</option>
+        <option value="April">April</option>
+        <option value="Mei">Mei</option>
+        <option value="Juni">Juni</option>
+        <option value="Juli">Juli</option>
+        <option value="Agustus">Agustus</option>
+        <option value="September">September</option>
+        <option value="Oktober">Oktober</option>
+        <option value="November">November</option>
+        <option value="Desember">Desember</option>
+        <select> 
+    </span>
+
+    <span>
+      <select name="thn" style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white">
+        <?php 
+          $year = date('Y');
+          $min = $year - 10;
+          $max = $year;
+          for( $i=$max; $i>=$min; $i-- ) {
+            echo '<option value='.$i.'>'.$i.'</option>';
+          }
+        ?>
+      </select>
+    </span>
+
+     <!--     <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="text" id="id" name="TANGGAL" class="TANGGAL" autocomplete="off" data-date-format="yyyy-mm-dd" required ></td></tr> -->
+
+
+
+
+
+<!-- Fungsi datepickier yang digunakan -->
+<!-- Fungsi datepickier yang digunakan -->
+<!--
+<script type="text/javascript">
+ $('.TANGGAL').datetimepicker({
+        language:  'id',
+        weekStart: 1,
+        todayBtn:  5,
+  autoclose: 1,
+  todayHighlight: 2,
+  startView: 2,
+  minView: 2,
+  forceParse: 0
+    });
+  </script> 
+-->
+
+
+            <!--id rekap-->
+             <tr>
+            <td><b> </b></td>
+            <td> 
+            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="hidden" id="id" name="ID_PERINTAH" class="form-control" value="<?php echo $data->ID_PERINTAH ?>" required ></td></tr>
+              <tr>
+            <td><b>FOTO</b></td>
+            <td> 
+            <input  style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="file" id="id" name="FOTO" class="form-control" accept="image/*" required></td></tr>
+            <tr>
             <td><b>KETERANGAN </b></td>
             <td> 
-            <input style="height: 30px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="radio" id="id" name="KETERANGAN" class="form-control" checked required <?php if (isset($KETERANGAN) && $KETERANGAN=="BONGKAR RAMPUNG") echo "checked";?>
-value="BONGKAR RAMPUNG">BONGKAR RAMPUNG
+            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="text" id="id" name="KETERANGAN" class="form-control"  required ></td></tr>
 
-<input style="height: 30px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="radio" id="id" name="KETERANGAN" class="form-control"  required <?php if (isset($KETERANGAN) && $KETERANGAN=="PASANG KEMBALI") echo "checked";?>
-value="PASANG KEMBALI">PASANG KEMBALI</td></tr>
+</table>
 
-          </table>
             <br>
-        <input style="font-size: 25px; background-color:rgba(50,50,255,0.9); color: white " type="submit" class="btn btn-primary" value=" &nbsp Submit &nbsp">
-          </form>
+            <input style="font-size: 25px; background-color:rgba(255,50,50,0.9); color: white " type="submit" class="btn btn-primary" value=" &nbsp Gagal Eksekusi &nbsp">
+</div>
+
+
+
+
         </div>
         </div> <!-- /container -->
  
@@ -231,6 +402,29 @@ value="PASANG KEMBALI">PASANG KEMBALI</td></tr>
  }
   ?>
 </form>
+<script type="text/javascript">
+$(function() {
+  
+  // Get the form fields and hidden div
+  var checkbox = $("#trigger");
+  var berhasil = $("#berhasil");
+  var gagal = $("#gagal");
+  
+  berhasil.hide();
+  
+  checkbox.change(function() {
+    if (checkbox.is(':checked')) {
+      berhasil.show();
+      gagal.hide();
+    }
+    else{
+     berhasil.hide();
+      gagal.show(); 
+    }
+  });
+});
+</script>
+
 
         </div>
 

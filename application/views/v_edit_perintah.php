@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Lihat Daftar Tunggakan</title>
+  <title>Edit Petugas</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -62,57 +62,69 @@
         <div class="col-12">
        
 
-                      <h2>Data Tunggakan</h2>
-<form style="padding-left: 200px; padding-right: 200px;">
-  <table border="18px" style=" font-size: 18px; background-color:rgba(20,20,20,0.3); ">
-    
-    <th> ID TAGIHAN </th>
-    <th> ID PELANGGAN </th>
-    <th> TOTAL TAGIHAN </th>
-    <th> SISA TAGIHAN </th>  
-    <th> KETERANGAN </th>
-    <th> TOTAL TUNGGAKAN/BULAN </th>
-    <th> STATUS BLOKIR </th>
-    
-    
-    
-    <!--ketika non admin maka no fasilitas lihat password edit/hapus-->
-    <?php if($this->session->userdata('akses')=='admin'):?>
-    <th> ACTION </th>
-    <?php endif;?>
-  
-  
-<? $total=0;?>
-<?php foreach($tagihan as $data){ 
-    
-    $total+=1;
-    
-    echo "<tr>";
-      echo "<td>". $data->id_tagihan ."</td>";
-      echo "<td>". $data->id_pelanggan ."</td>";
-      echo "<td>". $data->total_tagihan."</td>";
-      echo "<td>". $data->sisa_tagihan ."</td>";
-      echo "<td>". $data->keterangan_tagihan ."</td>";
-      echo "<td>". $data->total_bulan_tunggakan ."</td>";
-      echo "<td><b>". $data->status_blokir ."</b></td>";
-      
+        <h2>EDIT PETUGAS</h2>
+  <?php foreach ($user as $data) 
+    {
+      ?>
+           
+    <div class="container" style="background-color: rgba(50,50,50,0); ">
+        <div class="col-md-4 col-md-offset-4" style="background-color: rgba(50,50,50,0.5); width: 400px; ">
 
-      //ketika non admin maka no fasilitas lihat password edit/hapus
-      if($this->session->userdata('akses')=='admin'){
-        echo "<td>".anchor('Admin/proses_blokir/'.$data->id_pelanggan,'Blokir')."</td>";
-        echo "</tr>";  
-      }
-      
-}
-?>
-</table>
+          <?php if($this->session->userdata('akses')=='admin')://jika dari admin maka ke kontroller admin?>
+          <form style="font-size: 20px; padding-top: 50px; padding-left: 10px;padding-bottom: 50px;padding-right: 10px;" class="form-signin" action="<?php echo base_url().'Admin/update_petugas/'.$data->id ?>" method="post">
+             <?php endif;?>
+           
+            <?php if($this->session->userdata('akses')=='petugas'):?>
+                        <form class="form-signin" action="<?php echo base_url().'Petugas/update_petugas/'.$data->id ?>" method="post">
+             <?php endif;?>
+
+
+            <table>
+            
+            <tr>
+            <td><b>Username </b></td>
+            <td> 
+            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="text" id="id" name="username" class="form-control" value="<?php echo $data->username ?>" required ></td></tr>
+
+            <tr style="">
+            <td><b>Password </b></td>
+            <td> 
+            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="text" id="id" name="password" class="form-control" value="<?php echo $data->password ?>" required ></td></tr>
+
+            <tr>
+            <td><b>Nama Lengkap </b></td>
+            <td> 
+            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="text" id="id" name="nama_lengkap" class="form-control" value="<?php echo $data->nama_lengkap ?>" required ></td></tr>
+
+            <tr>
+            <td><b>Tipe </b></td>
+            <td> 
+            
+<input style="height: 30px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="radio" id="id" name="level" class="form-control" checked required <?php if (isset($level) && $level=="admin") echo "checked";?>
+value="admin">ADMIN
+
+<input style="height: 30px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="radio" id="id" name="level" class="form-control"  required <?php if (isset($level) && $level=="petugas") echo "checked";?>
+value="petugas">PETUGAS</td></tr>
+
+            <tr>
+            <td><b>Jabatan </b></td>
+            <td> 
+            <input style="height: 50px; font-size: 25px; background-color:rgba(0,0,100,0.2); color: white" type="text" id="id" name="jabatan" class="form-control" value="<?php echo $data->jabatan ?>" required ></td></tr>
+
+            
+          </table>
+            <br>
+        <input style="font-size: 25px; background-color:rgba(50,50,255,0.9); color: white " type="submit" class="btn btn-primary" value=" &nbsp Submit &nbsp">
+          </form>
+        </div>
+        </div> <!-- /container -->
+ 
+ <?php 
+ }
+  ?>
 </form>
-<br>
-
-        <?php echo "Total Pelangggan yang Menunggak: <b>".$total." Orang.</b>"?>;
 
         </div>
-
 
         <!-- /col-12 -->
       </div>

@@ -142,13 +142,94 @@ $this->dompdf->stream("hasilRekap.pdf", array("Attachment"=>0));
     $this->load->view('v_dashboard');
   }
 
-  function ttd(){
-  	 $data['page'] = 'export-excel';
-        $data['title'] = 'Export Excel data | TechArise';
-        $data['employeeInfo'] = $this->Data_model->employeeList();
-		// load view file for output
-    $this->load->view('v_rekapeexcel', $data);
+   function tambah_perintah($id){
+    
+    if($this->session->userdata('akses')=='admin') 
+    {
+   $where=array('ID'=>$id);
+  	$table='datapln';
+	$data['pelanggan']=$this->Admin_model->edit_data($where,$table)->result();
+	$this->load->view('v_tambah_perintah',$data);
   }
+  else
+    {
+      echo "Anda tidak berhak mengakses halaman ini";
+    }
+ 
+  }  
+
+function input_aksi_perintah(){
+    if($this->session->userdata('akses')=='admin')
+    {
+
+		$id=$this->input->post('ID');
+		$tanggal= date("Y/m/d");
+		$kategori=$this->input->post('KATEGORI');
+		$keterangan=$this->input->post('KETERANGAN');
+		$status="BELUM DIKERJAKAN";		
+		$table='data_perintah';
+		$data=array(
+
+			'ID_PELANGGAN' => $id,
+			'TANGGAL' => $tanggal,
+			'KATEGORI' => $kategori,
+			'KETERANGAN' => $keterangan,
+			'STATUS' => $status,
+			
+			);
+		
+		$this->Admin_model->input_data($table,$data);
+		redirect('Admin/lihat_data_perintah');
+	}
+
+	else
+    {
+      echo "Anda tidak berhak mengakses halaman ini";
+    }
+ 
+  }
+
+function lihat_data_perintah(){
+      if($this->session->userdata('akses')=='admin' )
+    {
+
+      if (isset($_POST['q'])) {
+      $data['ringkasan'] = $this->input->post('cari');
+      // se session userdata untuk pencarian, untuk paging pencarian
+      $this->session->set_userdata('sess_ringkasan', $data['ringkasan']);
+      }
+      else {
+
+      $data['ringkasan'] = $this->session->userdata('sess_ringkasan');
+      }
+ 
+     $this->load->model('Data_model');
+
+    $this->db->like('KATEGORI', $data['ringkasan']);
+        $this->db->from('data_perintah');
+
+    // pagination limit
+    $pagination['base_url'] = base_url().'Admin/lihat_data_perintah/page/';
+    $pagination['total_rows'] = $this->db->count_all_results();
+    $pagination['full_tag_open'] = "<p><div class=\"pagination\" style='letter-spacing:2px;'>";
+    $pagination['full_tag_close'] = "</div></p>";
+    $pagination['cur_tag_open'] = "<span class=\"current\">";
+    $pagination['cur_tag_close'] = "</span>";
+    $pagination['num_tag_open'] = "<span class=\"disabled\">";
+    $pagination['num_tag_close'] = "</span>";
+    $pagination['per_page'] = "100";
+    $pagination['uri_segment'] = 4;
+    $pagination['num_links'] = 5;
+
+    $this->pagination->initialize($pagination);
+
+    $data['ListBerita'] = $this->Data_model->ambildata_perintah_all($pagination['per_page'],$this->uri->segment(4,0),$data['ringkasan']);
+
+    $this->load->vars($data);  
+    $this->load->view('v_lihat_data_perintah');
+  }
+  
+}
 
 
 
@@ -230,7 +311,24 @@ $this->dompdf->stream("hasilRekap.pdf", array("Attachment"=>0));
       echo "Anda tidak berhak mengakses halaman ini";
     }
  
+  }
+
+function edit_perintah($id){
+    
+    if($this->session->userdata('akses')=='admin') 
+    {
+  	$where=array('ID_PERINTAH'=>$id);
+  	$table='data_perintah';
+	$data['user']=$this->Admin_model->edit_data($where,$table)->result();
+	$this->load->view('v_edit_perintah',$data);
+  }
+  else
+    {
+      echo "Anda tidak berhak mengakses halaman ini";
+    }
+ 
   }  
+  
 
   function update_petugas($id){
 	
@@ -263,8 +361,50 @@ $this->dompdf->stream("hasilRekap.pdf", array("Attachment"=>0));
       echo "Anda tidak berhak mengakses halaman ini";
     }
  
+  }
+
+
+function cetak_perintah($id){
+    if($this->session->userdata('akses')=='admin')
+    {
+ 
+    $where=array('ID_PERINTAH'=>$id);
+    $table='data_perintah';
+    $this->db->join('datapln','data_perintah.ID_PELANGGAN=datapln.ID'); 
+  
+    $data['rekap']=$this->Admin_model->edit_data($where,$table)->result();
+    $this->load->view('v_lihat_download_perintah_perrekap_topdf',$data);
+    
+$html = $this->output->get_output();
+$this->load->library('pdf');
+$this->dompdf->loadHtml($html);
+$this->dompdf->setPaper('A4', 'potrait');
+$this->dompdf->render();
+$this->dompdf->stream("hasilRekap.pdf", array("Attachment"=>0));
+
+
+  }
+  else
+    {
+      echo "Anda tidak berhak mengakses halaman ini";
+    }
   }  
 
+function hapus_perintah($id){
+		    if($this->session->userdata('akses')=='admin')
+    {
+
+		$where=array('ID_PERINTAH' => $id);
+		$table='data_perintah';
+		$this->Admin_model->hapus_data($where,$table);
+		redirect('Admin/lihat_data_perintah');
+	}
+	else
+    {
+      echo "Anda tidak berhak mengakses halaman ini";
+    }
+ 
+  }
 
 	function hapus_petugas($id){
 		    if($this->session->userdata('akses')=='admin')
@@ -477,7 +617,57 @@ function hapus_blokir($id){
 }
 
 
+function lihat_data_rekap_gagal(){
+      if($this->session->userdata('akses')=='admin' )
+    {
+
+      if (isset($_POST['q'])) {
+      $data['ringkasan'] = $this->input->post('cari');
+      // se session userdata untuk pencarian, untuk paging pencarian
+      $this->session->set_userdata('sess_ringkasan', $data['ringkasan']);
+      }
+      else {
+
+      $data['ringkasan'] = $this->session->userdata('sess_ringkasan');
+      }
   
+    $this->load->model('Data_model');
+    //$this->db->like('ID_PELANGGAN', $data['ringkasan']);
+
+
+
+    
+    // pagination limit
+    $pagination['base_url'] = base_url().'Admin/lihat_rekap_blokir/page/';
+    $pagination['total_rows'] = $this->db->count_all_results();
+    $pagination['full_tag_open'] = "<p><div class=\"pagination\" style='letter-spacing:2px;'>";
+    $pagination['full_tag_close'] = "</div></p>";
+    $pagination['cur_tag_open'] = "<span class=\"current\">";
+    $pagination['cur_tag_close'] = "</span>";
+    $pagination['num_tag_open'] = "<span class=\"disabled\">";
+    $pagination['num_tag_close'] = "</span>";
+    $pagination['per_page'] = "100";
+    $pagination['uri_segment'] = 4;
+    $pagination['num_links'] = 5;
+
+    $this->pagination->initialize($pagination);
+    $this->db->like('ID_PELANGGAN', $data['ringkasan']);
+    $this->db->join('data_perintah','REKAP_GAGAL.ID_PERINTAH=data_perintah.ID_PERINTAH'); 
+    $this->db->join('datapln','data_perintah.ID_PELANGGAN=datapln.ID'); 
+    $this->db->join('user','REKAP_GAGAL.ID_PETUGAS=user.id');
+
+
+    $data['ListBerita'] = $this->Data_model->ambildata_gagal($pagination['per_page'],$this->uri->segment(4,0),$data['ringkasan']);
+
+    $this->load->vars($data);  
+    
+    $this->load->view('v_lihat_rekap_gagal');
+  }
+  
+}
+
+
+
   function lihat_data_rekap(){
       if($this->session->userdata('akses')=='admin' )
     {
@@ -493,12 +683,13 @@ function hapus_blokir($id){
       }
   
     $this->load->model('Data_model');
+    //$this->db->like('ID_PELANGGAN', $data['ringkasan']);
 
-    $this->db->like('ID_PELANGGAN', $data['ringkasan']);
-        $this->db->from('rekap_blokir');
 
+
+    
     // pagination limit
-    $pagination['base_url'] = base_url().'Petugas/lihat_rekap_blokir/page/';
+    $pagination['base_url'] = base_url().'Admin/lihat_rekap_blokir/page/';
     $pagination['total_rows'] = $this->db->count_all_results();
     $pagination['full_tag_open'] = "<p><div class=\"pagination\" style='letter-spacing:2px;'>";
     $pagination['full_tag_close'] = "</div></p>";
@@ -511,15 +702,21 @@ function hapus_blokir($id){
     $pagination['num_links'] = 5;
 
     $this->pagination->initialize($pagination);
+    $this->db->like('ID_PELANGGAN', $data['ringkasan']);
+    $this->db->join('data_perintah','REKAP_BERHASIL.ID_PERINTAH=data_perintah.ID_PERINTAH'); 
+    $this->db->join('datapln','data_perintah.ID_PELANGGAN=datapln.ID'); 
+    $this->db->join('user','REKAP_BERHASIL.ID_PETUGAS=user.id');
+
 
     $data['ListBerita'] = $this->Data_model->ambildata_rekap($pagination['per_page'],$this->uri->segment(4,0),$data['ringkasan']);
 
     $this->load->vars($data);  
+    
     $this->load->view('v_lihat_rekap_blokir');
-
   }
   
-}
+}  
+  
 
 function cetak_rekap($id){
     if($this->session->userdata('akses')=='admin')

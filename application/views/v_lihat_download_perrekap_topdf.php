@@ -1,411 +1,103 @@
-<html>
-<head>
-    <title>PRINT OUT</title>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-    <style type='text/css'>
-        body {font-family:arial;font-size:11pt;padding:0;margin:0;}
-        a {color: #0000FF}
-        a:hover {text-decoration:underline}
-        table {border-collapse:collapse;table-layout:fixed}
-        .t {font-family:Calibri;text-align:left;vertical-align:bottom}
-        .r1 {font-weight:bold;text-align:center}
-        .r21 {text-align:center;vertical-align:middle}
-        .c21_1 {text-align:left;vertical-align:bottom}
-        .c21_2 {border-top:1px solid #000000;border-left:1px solid #000000}
-        .c21_12 {border-top:1px solid #000000;border-left:1px solid #000000;border-right:1px solid #000000}
-        .c22_4 {text-align:left;border-top:1px solid #000000;border-left:1px solid #000000}
-        .c23_2 {border-top:1px solid #000000}
-        .c23_4 {vertical-align:middle;border-top:1px solid #000000}
-        .c25_4 {vertical-align:middle}
-        .c31_9 {font-weight:bold;text-decoration:underline}
+<!DOCTYPE html>
+<html lang="en">
+<title>Download</title>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <style>
+        td {
+            border-bottom: 1px solid #ddd;
+            margin: 5px;
+        }
     </style>
-</head>
-<body>
+    <body>
+        <div>
+            <div style="float: left;">
+                <img style="width: 77px" src="./assets/img/logo-pt-pln.jpg">
+            </div>
+            <div style="float: left;">
+                <p><b>PT PLN (PERSERO) BANGKALAN</b><br/>
+                Jl. Letnan Mestu No.4, RW. 01, Kraton, <br>Kec. Bangkalan, Kabupaten Bangkalan, <br>Jawa Timur 69112, Indonesia.<br/>
+                </p>
+            </div>
+            
+        </div>
 
-<table class='t'>
-    <tr style='height:18px' class='r1'>
-        <td colspan='12'>
-            SURAT PERNYATAAN
-        </td>
-    </tr>
-    <tr style='height:18px' class='r1'>
-        <td colspan='12'>
-            MELAKUKAN KEGIATAN MANAJEMEN PNS
-        </td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td style='width:28px'></td>
-        <td style='width:83px'></td>
-        <td style='width:178px'></td>
-        <td style='width:14px'></td>
-        <td style='width:76px'></td>
-        <td style='width:67px'></td>
-        <td style='width:69px'></td>
-        <td style='width:66px'></td>
-        <td style='width:48px'></td>
-        <td style='width:53px'></td>
-        <td style='width:87px'></td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td colspan='11'>
-            Yang bertanda tangan di bawah ini:
-        </td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td style='width:28px'></td>
-        <td colspan='2'>
-            Nama
-        </td>
-        <td style='width:14px'>
-            :
-        </td>
-        <td colspan='7'>
-            ABD. RAHMAN, S.IP
-        </td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td style='width:28px'></td>
-        <td colspan='2'>
-            NIP
-        </td>
-        <td style='width:14px'>
-            :
-        </td>
-        <td colspan='7'>
-            197312311993031016
-        </td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td style='width:28px'></td>
-        <td colspan='2'>
-            Pangkat/Golongan Ruang/TMT
-        </td>
-        <td style='width:14px'>
-            :
-        </td>
-        <td colspan='7'>
-            Penata / III/c / 01-04-2014
-        </td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td style='width:28px'></td>
-        <td colspan='2'>
-            Jabatan
-        </td>
-        <td style='width:14px'>
-            :
-        </td>
-        <td colspan='7'>
-            Kasubid Pengadaan Pegawai
-        </td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td style='width:28px'></td>
-        <td colspan='2'>
-            Unit Kerja
-        </td>
-        <td style='width:14px'>
-            :
-        </td>
-        <td colspan='7'>
-            Badan Kepegawaian Daerah Kab. Pinrang
-        </td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td style='width:28px'></td>
-        <td style='width:83px'></td>
-        <td style='width:178px'></td>
-        <td style='width:14px'></td>
-        <td style='width:76px'></td>
-        <td style='width:67px'></td>
-        <td style='width:69px'></td>
-        <td style='width:66px'></td>
-        <td style='width:48px'></td>
-        <td style='width:53px'></td>
-        <td style='width:87px'></td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td colspan='11'>
-            Menyatakan bahwa:
-        </td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td style='width:28px'></td>
-        <td colspan='2'>
-            Nama
-        </td>
-        <td style='width:14px'>
-            :
-        </td>
-        <td colspan='7'>
-            RULLI WUJI WIJIANTO, S.AP
-        </td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td style='width:28px'></td>
-        <td colspan='2'>
-            NIP
-        </td>
-        <td style='width:14px'>
-            :
-        </td>
-        <td colspan='7'>
-            198705122006041004
-        </td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td style='width:28px'></td>
-        <td colspan='2'>
-            Pangkat/Golongan Ruang/TMT
-        </td>
-        <td style='width:14px'>
-            :
-        </td>
-        <td colspan='7'>
-            Penata Muda / III/a / 01-04-2013
-        </td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td style='width:28px'></td>
-        <td colspan='2'>
-            Jabatan
-        </td>
-        <td style='width:14px'>
-            :
-        </td>
-        <td colspan='7'>
-            Analis Kepegawaian Pertama
-        </td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td style='width:28px'></td>
-        <td colspan='2'>
-            Unit Kerja
-        </td>
-        <td style='width:14px'>
-            :
-        </td>
-        <td colspan='7'>
-            Badan Kepegawaian Daerah
-        </td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td style='width:28px'></td>
-        <td style='width:83px'></td>
-        <td style='width:178px'></td>
-        <td style='width:14px'></td>
-        <td style='width:76px'></td>
-        <td style='width:67px'></td>
-        <td style='width:69px'></td>
-        <td style='width:66px'></td>
-        <td style='width:48px'></td>
-        <td style='width:53px'></td>
-        <td style='width:87px'></td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td style='width:28px'></td>
-        <td style='width:83px'></td>
-        <td style='width:178px'></td>
-        <td style='width:14px'></td>
-        <td style='width:76px'></td>
-        <td style='width:67px'></td>
-        <td style='width:69px'></td>
-        <td style='width:66px'></td>
-        <td style='width:48px'></td>
-        <td style='width:53px'></td>
-        <td style='width:87px'></td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td colspan='11'>
-            Telah melakukan kegiatan manajemen PNS sebagai berikut :
-        </td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td style='width:28px'></td>
-        <td style='width:83px'></td>
-        <td style='width:178px'></td>
-        <td style='width:14px'></td>
-        <td style='width:76px'></td>
-        <td style='width:67px'></td>
-        <td style='width:69px'></td>
-        <td style='width:66px'></td>
-        <td style='width:48px'></td>
-        <td style='width:53px'></td>
-        <td style='width:87px'></td>
-    </tr>
-    <tr style='height:69px' class='r21'>
-        <td class='c21_1' style='width:17px'></td>
-        <td class='c21_2' style='width:28px'>
-            NO
-        </td>
-        <td class='c21_2' style='width:83px'>
-            KODE KEGIATAN
-        </td>
-        <td colspan='3' class='c21_2'>
-            URAIAN KEGIATAN
-        </td>
-        <td class='c21_2' style='width:67px'>
-            TANGGAL
-        </td>
-        <td class='c21_2' style='width:69px'>
-            SATUAN HASIL
-        </td>
-        <td class='c21_2' style='width:66px'>
-            JUMLAH VOLUME KEGIATAN
-        </td>
-        <td class='c21_2' style='width:48px'>
-            ANGKA KREDIT
-        </td>
-        <td class='c21_2' style='width:53px'>
-            JUMLAH ANGKA KREDIT
-        </td>
-        <td class='c21_12' style='width:87px'>
-            KETERANGAN / BUKTI FISIK
-        </td>
-    </tr>
+
+        <?php foreach ($rekap as $data) 
+    {
+      ?>
+        <div>
+            <div style="text-align: center; padding-top: 100px;">
+        <hr>
+                <h1>BUKTI CETAK</h1>
+
+            </div>
+        </div>
+          <table cellspacing="0">
+    <tr><td>    ID Pelanggan</td> <td>: <b><?php echo $data->ID_PELANGGAN ?></b></td> </tr>
+    <tr><td>Keterangan</td> <td>: <b><?php echo $data->KETERANGAN ?></b></td></tr>
+    <tr><td>Tanggal</td> <td>: <b><?php echo $data->TANGGAL ?></b></td></tr>
+    </table>
+        <div >
+            <table cellspacing="0" style=" text-align: center;">
+                <thead style="background-color: #eeeeee; border: none;">
+                    <tr>
+                        <th width="160px" height="15px">Nama</th>
+                        <th width="200px">Alamat</th>
+                        <th width="200px">Kordinat</th>
+                        <th width="88px">Tarif</th>
+                        <th width="118px">Daya</th>
+                        <th width="88px">Koduk</th>
+                        <th width="88px">Tiang</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td height="15px"><?php echo $data->NAMA ?></td>
+                        <td><?php echo $data->ALAMAT ?></td>
+                        <td><?php echo $data->KORDINAT ?></td>
+                        <td><?php echo $data->TARIF ?></td>
+                        <td><?php echo $data->DAYA ?></td>
+                        <td><?php echo $data->KODUK ?></td>
+                        <td><?php echo $data->TIANG ?></td>
+                    </tr>
+                </tbody>
+            
+            </table>
     
-@yield('content')
+        <div>
+            <table cellspacing="0" style=" text-align: center;">
+                <thead style="background-color: #eeeeee; border: none;">
+                    <tr>
+                        <th width="500px" height="15px">Foto Sebelum</th>
+                        <th width="500px">Foto Sesudah</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img style="height: 230px;" src ="./assets/uploads/<?php echo $data->FOTO_SEBELUM ?>"></td>
+                        <td><img style="height: 230px;" src ="./assets/uploads/<?php echo $data->FOTO_SESUDAH ?>"></td>
+                        
+                    </tr>
+                </tbody>
+            
+            </table>
+    
 
-<tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td class='c23_2' style='width:28px'></td>
-        <td class='c23_2' style='width:83px'></td>
-        <td colspan='3' class='c23_4'></td>
-        <td class='c23_2' style='width:67px'></td>
-        <td class='c23_2' style='width:69px'></td>
-        <td class='c23_2' style='width:66px'></td>
-        <td class='c23_2' style='width:48px'></td>
-        <td class='c23_4' style='width:53px'></td>
-        <td class='c23_2' style='width:87px'></td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td colspan='11'>
-            Demikian pernyataan ini dibuat untuk dapat dipergunakan sebagaimana mestinya.
-        </td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td style='width:28px'></td>
-        <td style='width:83px'></td>
-        <td colspan='3' class='c25_4'></td>
-        <td style='width:67px'></td>
-        <td style='width:69px'></td>
-        <td style='width:66px'></td>
-        <td style='width:48px'></td>
-        <td style='width:53px'></td>
-        <td style='width:87px'></td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td style='width:28px'></td>
-        <td style='width:83px'></td>
-        <td colspan='3' class='c25_4'></td>
-        <td style='width:67px'></td>
-        <td style='width:69px'></td>
-        <td colspan='4'>
-            Pinrang, 31 Desember 2015
-        </td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td style='width:28px'></td>
-        <td style='width:83px'></td>
-        <td style='width:178px'></td>
-        <td style='width:14px'></td>
-        <td style='width:76px'></td>
-        <td style='width:67px'></td>
-        <td style='width:69px'></td>
-        <td colspan='4'>
-            Atasan Langsung
-        </td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td style='width:28px'></td>
-        <td style='width:83px'></td>
-        <td style='width:178px'></td>
-        <td style='width:14px'></td>
-        <td style='width:76px'></td>
-        <td style='width:67px'></td>
-        <td style='width:69px'></td>
-        <td style='width:66px'></td>
-        <td style='width:48px'></td>
-        <td style='width:53px'></td>
-        <td style='width:87px'></td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td style='width:28px'></td>
-        <td style='width:83px'></td>
-        <td style='width:178px'></td>
-        <td style='width:14px'></td>
-        <td style='width:76px'></td>
-        <td style='width:67px'></td>
-        <td style='width:69px'></td>
-        <td style='width:66px'></td>
-        <td style='width:48px'></td>
-        <td style='width:53px'></td>
-        <td style='width:87px'></td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td style='width:28px'></td>
-        <td style='width:83px'></td>
-        <td style='width:178px'></td>
-        <td style='width:14px'></td>
-        <td style='width:76px'></td>
-        <td style='width:67px'></td>
-        <td style='width:69px'></td>
-        <td style='width:66px'></td>
-        <td style='width:48px'></td>
-        <td style='width:53px'></td>
-        <td style='width:87px'></td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td style='width:28px'></td>
-        <td style='width:83px'></td>
-        <td style='width:178px'></td>
-        <td style='width:14px'></td>
-        <td style='width:76px'></td>
-        <td style='width:67px'></td>
-        <td style='width:69px'></td>
-        <td colspan='4' class='c31_9'>
-            ABD. RAHMAN, S.IP
-        </td>
-    </tr>
-    <tr style='height:18px'>
-        <td style='width:17px'></td>
-        <td style='width:28px'></td>
-        <td style='width:83px'></td>
-        <td style='width:178px'></td>
-        <td style='width:14px'></td>
-        <td style='width:76px'></td>
-        <td style='width:67px'></td>
-        <td style='width:69px'></td>
-        <td colspan='4'>
-            NIP. 197312311993031016
-        </td>
-    </tr>
-</table>
-</body>
-</html>
+    
+
+            <div  style="float: right;">
+              
+                <p><?php echo $data->TANGGAL ?><br/>
+                <br><br>
+                <i>Petugas</i>
+                </p>
+            </div>
+    <?php 
+ }
+  ?>
+</div>
+    </body>
+</html>      

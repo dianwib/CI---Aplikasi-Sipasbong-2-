@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Lihat Rekap Blokir</title>
+  <title>LIHAT REKAP (BERHASIL)</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -62,7 +62,7 @@
         <div class="col-12">
        
 
-        <h2>Lihat Rekap Blokir</h2>
+        <h2>LIHAT REKAP BERHASIL</h2>
            
     <div class="container" style="background-color: rgba(50,50,50,0); ">
         <div class="col-md-4 col-md-offset-4">
@@ -79,10 +79,15 @@
           <?php endif;?>
           <input type="search" name="cari" placeholder="Cari ID Pelanggan" style="color: rgba(0,0,0,1);"> <input style=" background-color:rgba(50,50,255,0.9); color: white" type="submit" name="q" value="Search">
            
-       <table border="10px">
-    <th style="text-align: center;"> NO REKAP </th>
+       <table border="10px" style="background-color:rgba(50,50,50,0.7);">
+    <th style="text-align: center;"> NO </th>
     <th style="text-align: center;"> ID PELANGGAN </th>
     <th style="text-align: center;"> NAMA PELANGGAN </th>
+    
+    <th style="text-align: center;"> KATEGORI </th>
+    <th style="text-align: center;"> KETERANGAN </th>
+    <th style="text-align: center;"> TANGGAL PERINTAH </th>
+    <th style="text-align: center;"> TANGGAL DIKERJAKAN </th>
     <th style="text-align: center;"> ALAMAT </th>
     <th style="text-align: center;"> TARIF </th>  
     <th style="text-align: center;"> DAYA </th>
@@ -91,9 +96,8 @@
     <th style="text-align: center;"> TIANG </th>
     <th style="text-align: center;"> FOTO SEBELUM </th>
     <th style="text-align: center;"> FOTO SESUDAH </th>
-    <th style="text-align: center;"> TANGGAL </th>
     <th style="text-align: center;"> KORDINAT </th>
-    <th style="text-align: center;"> KETERANGAN </th>
+    <th style="text-align: center;"> PETUGAS </th>
       
     
     
@@ -105,17 +109,22 @@
   
   
 <?php 
+$temp=0;
 
 if (count($ListBerita) > 0) {
           foreach($ListBerita as $data)
           {
-    
+    $temp+=1;
     
     echo "<tr>";
-      echo "<td>". $data['ID_REKAP'] ."</td>";
-      echo "<td>". $data['ID_PELANGGAN'] ."</td>"; 
-      echo "<td>". $data['NAMA'] ."</td>";
-      echo "<td>". $data['ALAMAT']."</td>";
+      echo "<td>". $temp ."</td>"; 
+      echo "<td>". $data['ID'] ."</td>";
+      echo "<td>". $data['NAMA']."</td>";
+      echo "<td>". $data['KATEGORI'] ."</td>";
+      echo "<td>". $data['KETERANGAN']."</td>";
+      echo "<td>". $data['TANGGAL'] ."</td>";
+      echo "<td>". $data['TANGGAL_DIKERJAKAN']."</td>";
+      echo "<td>". $data['ALAMAT'] ."</td>";
       echo "<td>". $data['TARIF'] ."</td>";
       echo "<td>". $data['DAYA'] ."</td>";
       echo "<td>". $data['KODUK'] ."</td>";
@@ -128,9 +137,8 @@ if (count($ListBerita) > 0) {
       <!--echo "<td>". $data['FOTO_SESUDAH'] ."</td>";-->
       
       <?php
-      echo "<td>". $data['TANGGAL']."</td>";
-      echo "<td>". $data['KORDINAT'] ."</td>";
-      echo "<td>". $data['KETERANGAN'] ."</td>";
+      echo "<td>". $data['KORDINAT']."</td>";
+      echo "<td>". $data['nama_lengkap'] ."</td>";
                   
 
       //ketika non admin maka no fasilitas lihat password edit/hapus

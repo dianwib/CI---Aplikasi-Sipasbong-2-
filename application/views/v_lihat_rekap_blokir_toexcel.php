@@ -8,11 +8,6 @@
            
           <?php if($this->session->userdata('akses')=='admin'):?>
             
-<form style="padding-left: auto; font-size: 15px; padding-right: auto;" class="form-signin" action="<?php echo base_url().'Admin/lihat_data_rekap'?>" method="post">
-
-<?php elseif($this->session->userdata('akses')=='petugas'):
-            //jika dari admin maka ke kontroller admin?>
-<form style="padding-left: auto; font-size: 15px; padding-right: auto;" class="form-signin" action="<?php echo base_url().'Petugas/lihat_data_rekap'?>" method="post">
 
        
           <?php endif;?>
